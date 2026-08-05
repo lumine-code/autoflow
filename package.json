@@ -16,6 +16,12 @@
   },
   "license": "MIT",
   "main": "./lib/autoflow",
+  "files": [
+    "keymaps",
+    "lib",
+    "menus",
+    "spec"
+  ],
   "engines": {
     "lumine": "^1.0.0"
   },
