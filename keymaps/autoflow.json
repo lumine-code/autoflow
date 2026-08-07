@@ -1,8 +1,14 @@
 {
-  ".platform-darwin atom-text-editor": {
+  // A genuine keystroke divergence rather than a cmd/ctrl swap, and one block
+  // per selector because a comma list is scored on its first branch alone.
+  // :not([mini]) because it rewraps the file.
+  ".platform-darwin atom-text-editor:not([mini])": {
     "alt-cmd-q": "autoflow:reflow-selection"
   },
-  ".platform-win32 atom-text-editor, .platform-linux atom-text-editor": {
+  ".platform-win32 atom-text-editor:not([mini])": {
+    "ctrl-shift-q": "autoflow:reflow-selection"
+  },
+  ".platform-linux atom-text-editor:not([mini])": {
     "ctrl-shift-q": "autoflow:reflow-selection"
   }
 }
