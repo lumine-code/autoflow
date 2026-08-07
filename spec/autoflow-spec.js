@@ -6,6 +6,10 @@ describe("Autoflow package", () => {
     beforeEach(() => {
       let activationPromise = null;
 
+      // The command is registered on atom-workspace, so the editor a dispatch
+      // is aimed at has to be inside the workspace rather than an orphan
+      // element.
+      jasmine.attachToDOM(atom.workspace.getElement());
       waitsForPromise(() => atom.workspace.open());
 
       runs(() => {

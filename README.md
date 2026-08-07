@@ -14,7 +14,7 @@ To install `autoflow` search for _autoflow_ in the Install pane of the Lumine se
 
 ## Commands
 
-Commands available in `atom-text-editor`:
+Commands available in `atom-workspace`:
 
 - `autoflow:reflow-selection`: reflow the selection or current paragraph to the preferred line length.
 
