@@ -6,34 +6,34 @@ describe("Autoflow package", () => {
     beforeEach(() => {
       let activationPromise = null;
 
-      // The command is registered on atom-workspace, so the editor a dispatch
+      // The command is registered on lumine-workspace, so the editor a dispatch
       // is aimed at has to be inside the workspace rather than an orphan
       // element.
-      jasmine.attachToDOM(atom.workspace.getElement());
-      waitsForPromise(() => atom.workspace.open());
+      jasmine.attachToDOM(lumine.workspace.getElement());
+      waitsForPromise(() => lumine.workspace.open());
 
       runs(() => {
-        editor = atom.workspace.getActiveTextEditor();
-        editorElement = atom.views.getView(editor);
+        editor = lumine.workspace.getActiveTextEditor();
+        editorElement = lumine.views.getView(editor);
 
-        atom.config.set("language.preferredLineLength", 30);
-        atom.config.set("language.tabLength", tabLength);
+        lumine.config.set("language.preferredLineLength", 30);
+        lumine.config.set("language.tabLength", tabLength);
 
-        activationPromise = atom.packages.activatePackage("autoflow");
+        activationPromise = lumine.packages.activatePackage("autoflow");
 
-        atom.commands.dispatch(editorElement, "autoflow:reflow-selection");
+        lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
       });
 
       waitsForPromise(() => activationPromise);
     });
 
     it("uses the preferred line length based on the editor's scope", () => {
-      atom.config.set("language.preferredLineLength", 4, {
+      lumine.config.set("language.preferredLineLength", 4, {
         scopeSelector: ".text.plain.null-grammar",
       });
       editor.setText("foo bar");
       editor.selectAll();
-      atom.commands.dispatch(editorElement, "autoflow:reflow-selection");
+      lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
 
       expect(editor.getText()).toBe(`\
 foo
@@ -47,7 +47,7 @@ bar\
       );
 
       editor.selectAll();
-      atom.commands.dispatch(editorElement, "autoflow:reflow-selection");
+      lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
 
       const exedOut = editor.getText().replace(/\t/g, Array(tabLength + 1).join("X"));
       expect(exedOut).toBe(
@@ -65,7 +65,7 @@ Another long paragraph, it should also be reflowed with the use of this single c
 `);
 
       editor.selectAll();
-      atom.commands.dispatch(editorElement, "autoflow:reflow-selection");
+      lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
 
       expect(editor.getText()).toBe(`\
 This is the first paragraph
@@ -96,7 +96,7 @@ converted into a space.
 
       editor.setCursorBufferPosition([1, 0]);
       editor.selectToBufferPosition([6, 0]);
-      atom.commands.dispatch(editorElement, "autoflow:reflow-selection");
+      lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
 
       expect(editor.getText()).toBe(`\
 v--- SELECTION STARTS AT THE BEGINNING OF THE NEXT LINE (pos 1,0)
@@ -128,7 +128,7 @@ This is a following paragraph, which shouldn't be modified by a reflow of the pr
 `);
 
       editor.setCursorBufferPosition([3, 5]);
-      atom.commands.dispatch(editorElement, "autoflow:reflow-selection");
+      lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
 
       expect(editor.getText()).toBe(`\
 This is a preceding paragraph, which shouldn't be modified by a reflow of the following paragraph.
@@ -151,7 +151,7 @@ This is a following paragraph, which shouldn't be modified by a reflow of the pr
       );
 
       editor.selectAll();
-      atom.commands.dispatch(editorElement, "autoflow:reflow-selection");
+      lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
 
       expect(editor.getText()).toBe(`\
 this-is-a-super-long-word-that-shouldn't-break-autoflow

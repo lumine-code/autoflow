@@ -35,7 +35,7 @@
     "format:check": "prettier --check ."
   },
   "activationCommands": {
-    "atom-text-editor": [
+    "lumine-text-editor": [
       "autoflow:reflow-selection"
     ]
   },
