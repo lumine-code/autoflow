@@ -3,28 +3,24 @@ describe("Autoflow package", () => {
   const tabLength = 4;
 
   describe("autoflow:reflow-selection", () => {
-    beforeEach(() => {
-      let activationPromise = null;
-
+    beforeEach(async () => {
       // The command is registered on lumine-workspace, so the editor a dispatch
       // is aimed at has to be inside the workspace rather than an orphan
       // element.
       jasmine.attachToDOM(lumine.workspace.getElement());
-      waitsForPromise(() => lumine.workspace.open());
+      await lumine.workspace.open();
 
-      runs(() => {
-        editor = lumine.workspace.getActiveTextEditor();
-        editorElement = lumine.views.getView(editor);
+      editor = lumine.workspace.getActiveTextEditor();
+      editorElement = lumine.views.getView(editor);
 
-        lumine.config.set("language.preferredLineLength", 30);
-        lumine.config.set("language.tabLength", tabLength);
+      lumine.config.set("language.preferredLineLength", 30);
+      lumine.config.set("language.tabLength", tabLength);
 
-        activationPromise = lumine.packages.activatePackage("autoflow");
+      const activationPromise = lumine.packages.activatePackage("autoflow");
 
-        lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
-      });
+      lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
 
-      waitsForPromise(() => activationPromise);
+      await activationPromise;
     });
 
     it("uses the preferred line length based on the editor's scope", () => {
