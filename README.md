@@ -10,7 +10,7 @@ Reflow the current selection so that no line is longer than the preferred line l
 
 ## Installation
 
-To install `autoflow` search for _autoflow_ in the Install pane of the Lumine settings or run `lumine --install lumine-code/autoflow`.
+To install `autoflow` search for it in the Install pane of the Lumine settings, or run the command `lumine --install lumine-code/autoflow`.
 
 ## Commands
 
