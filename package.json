@@ -34,11 +34,6 @@
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
-  "activationCommands": {
-    "lumine-text-editor": [
-      "autoflow:reflow-selection"
-    ]
-  },
   "dependencies": {
     "@lumine-code/underscore-plus": "github:lumine-code/underscore-plus#02d71a75193a1098c5f59d8ea7656a815ee3d712"
   },
