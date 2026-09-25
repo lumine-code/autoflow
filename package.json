@@ -25,14 +25,18 @@
   "engines": {
     "lumine": "^1.0.0"
   },
-  "backgroundTips": [
-    "You can reflow the selected text to your preferred line length with {{ 'autoflow:reflow-selection' | keystroke }}"
-  ],
   "scripts": {
     "test": "lumine --test spec",
     "lint": "eslint . --max-warnings 0",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
+  },
+  "providedServices": {
+    "background-tips.provider": {
+      "versions": {
+        "1.0.0": "provideBackgroundTips"
+      }
+    }
   },
   "dependencies": {
     "@lumine-code/underscore-plus": "github:lumine-code/underscore-plus#02d71a75193a1098c5f59d8ea7656a815ee3d712"
