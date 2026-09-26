@@ -4,6 +4,9 @@ describe("Autoflow package", () => {
 
   describe("autoflow:reflow-selection", () => {
     beforeEach(async () => {
+      const languageText = await lumine.packages.activatePackage("language-text");
+      await languageText.resourceLoadPromise;
+
       // The command is registered on lumine-workspace, so the editor a dispatch
       // is aimed at has to be inside the workspace rather than an orphan
       // element.
@@ -25,7 +28,7 @@ describe("Autoflow package", () => {
 
     it("uses the preferred line length based on the editor's scope", () => {
       lumine.config.set("editor.preferredLineLength", 4, {
-        scopeSelector: ".text.plain.null-grammar",
+        scopeSelector: ".text.plain",
       });
       editor.setText("foo bar");
       editor.selectAll();
