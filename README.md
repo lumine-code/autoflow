@@ -2,6 +2,8 @@
 
 Reflow the current selection so that no line is longer than the preferred line length.
 
+Fork of [pulsar-edit/pulsar](https://github.com/pulsar-edit/pulsar) (`packages/autoflow`).
+
 ## Features
 
 - **Selection reflow**: rewraps the selected text to fit within the target line width.
