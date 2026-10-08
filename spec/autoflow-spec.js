@@ -163,6 +163,21 @@ words\
   describe("reflowing text", () => {
     beforeEach(() => (autoflow = require("../lib/autoflow")));
 
+    it("preserves multiple blank lines at both selection boundaries", () => {
+      const text = "\n\nalpha beta gamma\n\n\n";
+      expect(autoflow.reflow(text, { wrapColumn: 10 })).toBe("\n\nalpha beta\ngamma\n\n\n");
+    });
+
+    it("preserves whitespace on the boundary blank lines without adding it to the text", () => {
+      const text = " \n\t\nalpha beta gamma\n \t\n";
+      expect(autoflow.reflow(text, { wrapColumn: 10 })).toBe(" \n\t\nalpha beta\ngamma\n \t\n");
+    });
+
+    it("preserves a selection containing only blank lines", () => {
+      const text = "\n\n\n";
+      expect(autoflow.reflow(text, { wrapColumn: 10 })).toBe(text);
+    });
+
     it("respects current paragraphs", () => {
       const text = `\
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida nibh id magna ullamcorper sagittis. Maecenas
