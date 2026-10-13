@@ -4,8 +4,27 @@
       "label": "Edit",
       "submenu": [
         {
-          "label": "Reflow Selection",
-          "command": "autoflow:reflow-selection"
+          "label": "Text",
+          "submenu": [
+            {
+              "label": "Reflow Selection",
+              "command": "autoflow:reflow-selection"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "Autoflow",
+          "submenu": [
+            {
+              "label": "Reflow Selection",
+              "command": "autoflow:reflow-selection"
+            }
+          ]
         }
       ]
     }
