@@ -10,6 +10,8 @@ Fork of [pulsar-edit/pulsar](https://github.com/pulsar-edit/pulsar) (`packages/a
 - **Paragraph reflow**: reflows the current paragraph when nothing is selected.
 - **Configurable width**: uses the `editor.preferredLineLength` config value when set, defaulting to 80 characters.
 
+![Reflow a paragraph to the chosen line length.](.github/demo.png)
+
 ## Installation
 
 To install `autoflow` search for it in the Install pane of the Lumine settings, or run the command `lumine --install lumine-code/autoflow`.

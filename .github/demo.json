@@ -1,0 +1,16 @@
+{
+  "title": "autoflow",
+  "description": "Reflow a paragraph to the chosen line length.",
+  "recordedOn": "2026-10-13",
+  "sourceRevision": "cd0a66e7560f4ad8af6ac9382ca50f2b3f60ee48",
+  "mode": "normal",
+  "fontSettings": "default",
+  "images": [
+    {
+      "file": "demo.png",
+      "label": "Reflow a paragraph to the chosen line length.",
+      "width": 1100,
+      "height": 340
+    }
+  ]
+}
