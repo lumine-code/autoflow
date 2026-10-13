@@ -8,7 +8,9 @@
           "submenu": [
             {
               "label": "Reflow Selection",
-              "command": "autoflow:reflow-selection"
+              "command": "autoflow:reflow-selection",
+              "group": "transform",
+              "order": 10
             }
           ]
         }
