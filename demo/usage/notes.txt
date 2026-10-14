@@ -1,0 +1,1 @@
+Signal Lab processes a sequence of measurements with a moving average. Choose a window size, compare the smoothed samples with the original signal, and export the results for the next experiment.
