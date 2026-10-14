@@ -1,16 +1,61 @@
 {
   "title": "autoflow",
   "description": "Reflow a paragraph to the chosen line length.",
-  "recordedOn": "2026-10-13",
-  "sourceRevision": "cd0a66e7560f4ad8af6ac9382ca50f2b3f60ee48",
+  "recordedOn": "2026-10-14",
+  "sourceRevision": "752da2c4eb47d82a7bcf87fcede20879e7f08484",
+  "themeSourceRevision": "7fbd047a87ecf1367c896b19ff270cdc28d319f7",
   "mode": "normal",
   "fontSettings": "default",
+  "scenario": "demo.js",
+  "recipeHash": "555682d596906033d4aa1da7d5bdbb0bd12fa19868685844c0fc18715cc9c2ce",
+  "environment": {
+    "platform": "win32",
+    "arch": "x64",
+    "electron": "44.7.0",
+    "chrome": "152.0.7977.130",
+    "devicePixelRatio": 1,
+    "locale": "en-GB",
+    "fontFamily": "Fira Code, Menlo, DejaVu Sans Mono, Consolas, monospace",
+    "fontSize": 14,
+    "themes": ["one-day-syntax", "one-day-ui"]
+  },
+  "viewport": { "width": 1100, "height": 340 },
+  "cornerRadius": 10,
+  "sources": {
+    "editor": {
+      "revision": "8be8f86075ad93df038610d82b3ac6d99329957d",
+      "dirty": false,
+      "workingTreeHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "package": {
+      "revision": "752da2c4eb47d82a7bcf87fcede20879e7f08484",
+      "dirty": false,
+      "workingTreeHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "autoflow": {
+      "revision": "752da2c4eb47d82a7bcf87fcede20879e7f08484",
+      "dirty": false,
+      "workingTreeHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "one-theme": {
+      "revision": "7fbd047a87ecf1367c896b19ff270cdc28d319f7",
+      "dirty": false,
+      "workingTreeHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  },
+  "fixtures": [
+    {
+      "file": "usage/notes.txt",
+      "sha256": "7c5d16592909b6d41e19f8407ca24ca15cfc2fc8459b7b591a87ffc9d7adb048"
+    }
+  ],
   "images": [
     {
       "file": "demo.png",
       "label": "Reflow a paragraph to the chosen line length.",
       "width": 1100,
-      "height": 340
+      "height": 340,
+      "sha256": "bb969d5c2619ed73fcc0401f6d1e6d27b150ab3dea66616d1c545bcfa59e1f98"
     }
   ]
 }
