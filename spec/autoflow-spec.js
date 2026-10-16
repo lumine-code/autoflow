@@ -7,9 +7,6 @@ describe("Autoflow package", () => {
       const languageText = await lumine.packages.activatePackage("language-text");
       await languageText.resourceLoadPromise;
 
-      // The command is registered on lumine-workspace, so the editor a dispatch
-      // is aimed at has to be inside the workspace rather than an orphan
-      // element.
       jasmine.attachToDOM(lumine.workspace.getElement());
       await lumine.workspace.open();
 

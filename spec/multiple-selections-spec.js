@@ -16,6 +16,22 @@ describe("Autoflow multiple selections", () => {
     lumine.commands.dispatch(editor.getElement(), "autoflow:reflow-selection");
   }
 
+  it("requires an editable document target instead of forwarding from another surface", () => {
+    const workspace = lumine.workspace.getElement();
+    editor.setText("alpha beta gamma delta");
+    lumine.commands.dispatch(workspace, "autoflow:reflow-selection");
+    expect(editor.getText()).toBe("alpha beta gamma delta");
+    expect(lumine.commands.canDispatch(workspace, "autoflow:reflow-selection")).toBe(false);
+    const mini = lumine.workspace.buildTextEditor({ mini: true });
+    workspace.appendChild(mini.getElement());
+    expect(lumine.commands.canDispatch(mini.getElement(), "autoflow:reflow-selection")).toBe(false);
+    mini.destroy();
+    editor.setReadOnly(true);
+    expect(lumine.commands.canDispatch(editor.getElement(), "autoflow:reflow-selection")).toBe(
+      false,
+    );
+  });
+
   it("reflows every selected range as one undoable operation", () => {
     const original = "alpha beta gamma delta\n\none two three four";
     editor.setText(original);
