@@ -18,7 +18,7 @@ To install `autoflow` search for it in the Install pane of the Lumine settings, 
 
 ## Commands
 
-Commands available in `lumine-workspace`:
+Commands available in `lumine-text-editor:not([mini]):not([readonly])`:
 
 - `autoflow:reflow-selection`: reflow the selection or current paragraph to the preferred line length.
 
