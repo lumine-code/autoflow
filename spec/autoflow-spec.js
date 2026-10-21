@@ -18,18 +18,18 @@ describe("Autoflow package", () => {
 
       const activationPromise = lumine.packages.activatePackage("autoflow");
 
-      lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
+      await lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
 
       await activationPromise;
     });
 
-    it("uses the preferred line length based on the editor's scope", () => {
+    it("uses the preferred line length based on the editor's scope", async () => {
       lumine.config.set("editor.preferredLineLength", 4, {
         scopeSelector: ".text.plain",
       });
       editor.setText("foo bar");
       editor.selectAll();
-      lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
+      await lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
 
       expect(editor.getText()).toBe(`\
 foo
@@ -37,13 +37,13 @@ bar\
 `);
     });
 
-    it("rearranges line breaks in the current selection to ensure lines are shorter than config.editor.preferredLineLength honoring tabLength", () => {
+    it("rearranges line breaks in the current selection to ensure lines are shorter than config.editor.preferredLineLength honoring tabLength", async () => {
       editor.setText(
         "\t\tThis is the first paragraph and it is longer than the preferred line length so it should be reflowed.\n\n\t\tThis is a short paragraph.\n\n\t\tAnother long paragraph, it should also be reflowed with the use of this single command.",
       );
 
       editor.selectAll();
-      lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
+      await lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
 
       const exedOut = editor.getText().replace(/\t/g, Array(tabLength + 1).join("X"));
       expect(exedOut).toBe(
@@ -51,7 +51,7 @@ bar\
       );
     });
 
-    it("rearranges line breaks in the current selection to ensure lines are shorter than config.editor.preferredLineLength", () => {
+    it("rearranges line breaks in the current selection to ensure lines are shorter than config.editor.preferredLineLength", async () => {
       editor.setText(`\
 This is the first paragraph and it is longer than the preferred line length so it should be reflowed.
 
@@ -61,7 +61,7 @@ Another long paragraph, it should also be reflowed with the use of this single c
 `);
 
       editor.selectAll();
-      lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
+      await lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
 
       expect(editor.getText()).toBe(`\
 This is the first paragraph
@@ -78,7 +78,7 @@ command.\
 `);
     });
 
-    it("is not confused when the selection boundary is between paragraphs", () => {
+    it("is not confused when the selection boundary is between paragraphs", async () => {
       editor.setText(`\
 v--- SELECTION STARTS AT THE BEGINNING OF THE NEXT LINE (pos 1,0)
 
@@ -92,7 +92,7 @@ converted into a space.
 
       editor.setCursorBufferPosition([1, 0]);
       editor.selectToBufferPosition([6, 0]);
-      lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
+      await lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
 
       expect(editor.getText()).toBe(`\
 v--- SELECTION STARTS AT THE BEGINNING OF THE NEXT LINE (pos 1,0)
@@ -110,7 +110,7 @@ space.
 `);
     });
 
-    it("reflows the current paragraph if nothing is selected", () => {
+    it("reflows the current paragraph if nothing is selected", async () => {
       editor.setText(`\
 This is a preceding paragraph, which shouldn't be modified by a reflow of the following paragraph.
 
@@ -124,7 +124,7 @@ This is a following paragraph, which shouldn't be modified by a reflow of the pr
 `);
 
       editor.setCursorBufferPosition([3, 5]);
-      lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
+      await lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
 
       expect(editor.getText()).toBe(`\
 This is a preceding paragraph, which shouldn't be modified by a reflow of the following paragraph.
@@ -141,13 +141,13 @@ This is a following paragraph, which shouldn't be modified by a reflow of the pr
 `);
     });
 
-    it("allows for single words that exceed the preferred wrap column length", () => {
+    it("allows for single words that exceed the preferred wrap column length", async () => {
       editor.setText(
         "this-is-a-super-long-word-that-shouldn't-break-autoflow and these are some smaller words",
       );
 
       editor.selectAll();
-      lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
+      await lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
 
       expect(editor.getText()).toBe(`\
 this-is-a-super-long-word-that-shouldn't-break-autoflow
