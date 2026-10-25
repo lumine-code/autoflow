@@ -1,5 +1,10 @@
 const { Range } = require("lumine");
 describe("Autoflow asynchronous owner", () => {
+  // Processing fixtures use a real grammar; None deliberately disables this package.
+  beforeEach(async () => {
+    await lumine.packages.activatePackage("language-text");
+  });
+
   let main, editor, release;
   beforeEach(async () => {
     main = (await lumine.packages.activatePackage("autoflow")).mainModule;
