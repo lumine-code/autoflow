@@ -40,7 +40,7 @@
     }
   },
   "dependencies": {
-    "@lumine-code/underscore-plus": "github:lumine-code/underscore-plus#fbdc47043786a15eb0ff38e650930f9c540dc9be"
+    "@lumine-code/underscore-plus": "github:lumine-code/underscore-plus#a471a621ceab05e6ea001d4b84a80c62ab518789"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
