@@ -8,10 +8,10 @@ describe("Autoflow asynchronous owner", () => {
   let main, editor, release;
   beforeEach(async () => {
     main = (await lumine.packages.activatePackage("autoflow")).mainModule;
+    lumine.config.set("editor.preferredLineLength", 10);
     editor = await lumine.workspace.open();
     editor.setText("one two three four five six seven eight");
     editor.getBuffer().getLanguageMode().asynchronousSyntax = true;
-    lumine.config.set("editor.preferredLineLength", 10);
     spyOn(editor, "getParagraphRangesForBufferRows").and.returnValue(
       new Promise((resolve) => {
         release = resolve;

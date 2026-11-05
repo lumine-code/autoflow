@@ -7,14 +7,14 @@ describe("Autoflow package", () => {
       const languageText = await lumine.packages.activatePackage("language-text");
       await languageText.resourceLoadPromise;
 
+      lumine.config.set("editor.preferredLineLength", 30);
+      lumine.config.set("editor.tabLength", tabLength);
+
       jasmine.attachToDOM(lumine.workspace.getElement());
       await lumine.workspace.open();
 
       editor = lumine.workspace.getActiveTextEditor();
       editorElement = lumine.views.getView(editor);
-
-      lumine.config.set("editor.preferredLineLength", 30);
-      lumine.config.set("editor.tabLength", tabLength);
 
       const activationPromise = lumine.packages.activatePackage("autoflow");
 
@@ -27,6 +27,7 @@ describe("Autoflow package", () => {
       lumine.config.set("editor.preferredLineLength", 4, {
         scopeSelector: ".text.plain",
       });
+      await conditionPromise(() => editor.getPreferredLineLength() === 4);
       editor.setText("foo bar");
       editor.selectAll();
       await lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
@@ -35,6 +36,22 @@ describe("Autoflow package", () => {
 foo
 bar\
 `);
+    });
+
+    it("uses the editor's current preferred line length override", async () => {
+      editor.update({ preferredLineLength: 4 });
+      editor.setText("foo bar");
+      editor.selectAll();
+      await lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
+
+      expect(editor.getText()).toBe("foo\nbar");
+      expect(lumine.config.get("editor.preferredLineLength")).toBe(30);
+
+      editor.update({ preferredLineLength: 7 });
+      editor.selectAll();
+      await lumine.commands.dispatch(editorElement, "autoflow:reflow-selection");
+
+      expect(editor.getText()).toBe("foo bar");
     });
 
     it("rearranges line breaks in the current selection to ensure lines are shorter than config.editor.preferredLineLength honoring tabLength", async () => {

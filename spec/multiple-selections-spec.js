@@ -13,8 +13,8 @@ describe("Autoflow multiple selections", () => {
     spyOn(lumine.application, "openWindow").and.resolveTo();
     jasmine.attachToDOM(lumine.workspace.getElement());
     await lumine.packages.activatePackage("autoflow");
-    editor = await lumine.workspace.open();
     lumine.config.set("editor.preferredLineLength", 10);
+    editor = await lumine.workspace.open();
   });
 
   function dispatch() {

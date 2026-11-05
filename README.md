@@ -8,7 +8,7 @@ Fork of [pulsar-edit/pulsar](https://github.com/pulsar-edit/pulsar) (`packages/a
 
 - **Selection reflow**: rewraps the selected text to fit within the target line width.
 - **Paragraph reflow**: reflows the current paragraph when nothing is selected.
-- **Configurable width**: uses the `editor.preferredLineLength` config value when set, defaulting to 80 characters.
+- **Configurable width**: uses the editor's preferred line length from `editor.preferredLineLength` or a per-editor override; the editor supplies the default of 80 characters.
 
 ![Reflow a paragraph to the chosen line length.](.github/demo.png)
 

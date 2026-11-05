@@ -7,8 +7,8 @@ describe("Autoflow oversized first words with prefixes", () => {
   let editor;
   beforeEach(async () => {
     await lumine.packages.activatePackage("autoflow");
-    editor = await lumine.workspace.open();
     lumine.config.set("editor.preferredLineLength", 8);
+    editor = await lumine.workspace.open();
   });
   for (const [input, expected] of [
     ["// extraordinary word", "// extraordinary\n// word"],
